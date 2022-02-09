@@ -1,10 +1,10 @@
 <?php
 
-namespace Infra\Repository\Database;
+namespace App\Infra\Repository\Database;
 
 use App\Domain\Entity\Voucher;
 use App\Domain\Repository\VoucherRepository;
-use App\Models\Voucher as ModelVoucher;
+use App\Infra\Models\Voucher as ModelVoucher;
 
 class VoucherRepositoryDb implements VoucherRepository
 {

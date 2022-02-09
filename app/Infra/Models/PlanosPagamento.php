@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Models;
+namespace App\Infra\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class AgendaAtividades extends Model
+class PlanosPagamento extends Model
 {
     use HasFactory;
+    protected $table = 'planos_pagamento';
 }

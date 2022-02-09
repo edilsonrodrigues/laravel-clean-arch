@@ -1,16 +1,16 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Infra\Http\Controllers;
 
 use App\Domain\UseCases\MakeRegistration\InputData;
 use App\Domain\UseCases\MakeRegistration\MakeRegistration;
 use DateTime;
 use Exception;
 use Illuminate\Routing\Controller as BaseController;
-use Infra\Repository\Database\PaymentPlanRepositoryDb;
-use Infra\Repository\Database\PersonRepositoryDb;
-use Infra\Repository\Database\SubscriptionRepositoryDb;
-use Infra\Repository\Database\VoucherRepositoryDb;
+use App\Infra\Repository\Database\PaymentPlanRepositoryDb;
+use App\Infra\Repository\Database\PersonRepositoryDb;
+use App\Infra\Repository\Database\SubscriptionRepositoryDb;
+use App\Infra\Repository\Database\VoucherRepositoryDb;
 
 class SubscriptionController extends BaseController
 {
@@ -36,7 +36,7 @@ class SubscriptionController extends BaseController
 
             return response()->json(['data' => $output]);
         } catch (Exception $e) {
-            return response()->json(['message' => $e->getMessage()], 400);
+            return response()->json(['message' => $e->getMessage(), 'trace' => $e->getTraceAsString()], 400);
         }
     }
 }

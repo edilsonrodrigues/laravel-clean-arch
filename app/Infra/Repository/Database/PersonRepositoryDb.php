@@ -1,10 +1,10 @@
 <?php
 
-namespace Infra\Repository\Database;
+namespace App\Infra\Repository\Database;
 
 use App\Domain\Entity\Person;
 use App\Domain\Repository\PersonRepository;
-use App\Models\Pessoa;
+use App\Infra\Models\Pessoa;
 
 class PersonRepositoryDb implements PersonRepository
 {

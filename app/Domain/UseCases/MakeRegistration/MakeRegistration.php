@@ -35,6 +35,7 @@ class MakeRegistration
 
         $subscription = new Subscription();
         $subscription->person = $person;
+        $subscription->paymentPlan = $paymentPlan;
         $subscription->markAsPending(new DateTimeImmutable($inputData->createdAt));
 
         $this->subscriptionRepo->subscribe($subscription);

@@ -14,6 +14,7 @@ class Subscription
     public ?Voucher $voucher;
     public ?DateTimeInterface $voucherAppliedAt;
     public float $price;
+    public PaymentPlan $paymentPlan;
 
     public function markAsPending(DateTimeInterface $createdAt)
     {

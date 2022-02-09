@@ -1,12 +1,12 @@
 <?php
 
-namespace Infra\Repository\Database;
+namespace App\Infra\Repository\Database;
 
 use App\Domain\Entity\Subscription;
 use App\Domain\Repository\PersonRepository;
 use App\Domain\Repository\SubscriptionRepository;
 use App\Domain\Repository\VoucherRepository;
-use App\Models\Inscricoes;
+use App\Infra\Models\Inscricoes;
 
 class SubscriptionRepositoryDb implements SubscriptionRepository
 {

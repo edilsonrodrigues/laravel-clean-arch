@@ -27,4 +27,15 @@ class VoucherRepositoryMemory implements VoucherRepository
 
         return count($voucher) ? current($voucher) : null;
     }
+    public function findById(int $id): ?Voucher
+    {
+        $voucher = array_filter(
+            $this->storage,
+            function ($voucher) use ($id) {
+                return $voucher->id == $id;
+            }
+        );
+
+        return count($voucher) ? current($voucher) : null;
+    }
 }

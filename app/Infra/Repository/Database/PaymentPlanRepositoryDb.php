@@ -1,16 +1,17 @@
 <?php
 
-namespace Infra\Repository\Database;
+namespace App\Infra\Repository\Database;
 
 use App\Domain\Entity\Activity;
 use App\Domain\Entity\ActivitySchedule;
 use App\Domain\Entity\PaymentPlan;
 use App\Domain\Entity\ProfessionalCategory;
 use App\Domain\Repository\PaymentPlanRepository;
-use App\Models\AgendaAtividades;
-use App\Models\Atividades;
-use App\Models\CategoriasCentrosCustos;
-use App\Models\PlanosPagamento;
+use App\Infra\Models\AgendaAtividades;
+use App\Infra\Models\Atividades;
+use App\Infra\Models\CategoriasCentrosCustos;
+use App\Infra\Models\PlanosPagamento;
+use Exception;
 
 class PaymentPlanRepositoryDb implements PaymentPlanRepository
 {
@@ -22,6 +23,11 @@ class PaymentPlanRepositoryDb implements PaymentPlanRepository
         $activity = new Activity;
 
         $record = PlanosPagamento::find($id);
+
+        if (!$record) {
+            throw new Exception("Sem plano pagamento!");
+        }
+
         $recordProfessionalCategory = CategoriasCentrosCustos::find($record->categoria_centro_custo_id);
         $recordActivitySchedule = AgendaAtividades::find($record->agenda_atividade_id);
         $recordActivity = Atividades::find($recordActivitySchedule->atividade_id);
