@@ -14,25 +14,32 @@ use App\Infra\Repository\Database\VoucherRepositoryDb;
 
 class SubscriptionController extends BaseController
 {
+
+    public function __construct(
+        private PersonRepositoryDb $personRepositoryDb,
+        private PaymentPlanRepositoryDb $paymentPlanRepositoryDb,
+        private VoucherRepositoryDb $voucherRepositoryDb,
+        private DateTime $dateTime,
+        private InputData $inputData
+    ) {
+    }
+
     public function registration()
     {
         try {
-            $dateTime = new DateTime;
-            $inputData = new InputData;
-
             $useCase = new MakeRegistration(
-                new PersonRepositoryDb,
-                new PaymentPlanRepositoryDb,
+                $this->personRepositoryDb,
+                $this->paymentPlanRepositoryDb,
                 new SubscriptionRepositoryDb(
-                    new PersonRepositoryDb,
-                    new VoucherRepositoryDb
+                    $this->personRepositoryDb,
+                    $this->voucherRepositoryDb
                 )
             );
 
-            $inputData->personId = request()->get('personId');
-            $inputData->paymentPlanId = request()->get('paymentPlanId');
-            $inputData->createdAt = $dateTime->format('Y-m-d H:i:s');
-            $output = $useCase->execute($inputData);
+            $this->inputData->personId = request()->get('personId');
+            $this->inputData->paymentPlanId = request()->get('paymentPlanId');
+            $this->inputData->createdAt = $this->dateTime->format('Y-m-d H:i:s');
+            $output = $useCase->execute($this->inputData);
 
             return response()->json(['data' => $output]);
         } catch (Exception $e) {
