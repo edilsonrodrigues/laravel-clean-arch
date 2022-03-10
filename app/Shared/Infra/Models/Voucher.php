@@ -1,0 +1,10 @@
+<?php
+
+namespace App\Shared\Infra\Models;
+
+use Illuminate\Database\Eloquent\Model;
+
+class Voucher extends Model
+{
+    protected $table = 'vouchers';
+}
